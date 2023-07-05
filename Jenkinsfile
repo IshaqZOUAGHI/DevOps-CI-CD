@@ -3,7 +3,7 @@ pipeline {
 	
   environment {
     DOCKERHUB_CREDENTIALS = credentials('docker-hub-cred')
-    REMOTE_SERVER = '52.73.28.146'
+    REMOTE_SERVER = '16.171.19.159'
     REMOTE_USER = 'ec2-user' 	  	  
   }
 	
@@ -12,7 +12,7 @@ pipeline {
   stages {
     stage('checkout') {
       steps {
-        git branch: 'main', url: 'https://github.com/palakbhawsar98/JavaWebApp'
+        git branch: 'main', url: 'https://github.com/IshaqZOUAGHI/DevOps-CI-CD'
 
       }
     }
