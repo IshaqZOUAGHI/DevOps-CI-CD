@@ -2,7 +2,8 @@ pipeline {
   agent any
 	
   environment {
-    DOCKERHUB_CREDENTIALS = '4c58011f-1423-4c2e-9c12-7efa16d05874'
+    DOCKERHUB_CREDENTIALS_USR = credentials('4c58011f-1423-4c2e-9c12-7efa16d05874')
+    DOCKERHUB_CREDENTIALS_PSW = 'dckr_pat_i0VRS1etOICqWTmBVUovfBRC_Do'
     REMOTE_SERVER = '16.171.19.159'
     REMOTE_USER = 'ec2-user' 	  	  
   }
@@ -46,8 +47,8 @@ pipeline {
     stage('Build Docker Image') {
 
       steps {
-        sh 'docker build -t javawebapp:latest .'
-        sh 'docker tag javawebapp palakbhawsar/javawebapp:latest'
+        sh 'docker build -t devops:latest .'
+        sh 'docker tag devops ishaq/devops:latest'
       }
     }
 	  
@@ -63,7 +64,7 @@ pipeline {
 	  
     stage('Push Image to dockerHUb') {
       steps {
-        sh 'docker push palakbhawsar/javawebapp:latest'
+        sh 'docker push ishaq/devops:latest'
       }
       post {
         always {
