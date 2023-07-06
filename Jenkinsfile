@@ -2,10 +2,11 @@ pipeline {
   agent any
 	
   environment {
-    DOCKERHUB_CREDENTIALS_USR = credentials('4c58011f-1423-4c2e-9c12-7efa16d05874')
-    DOCKERHUB_CREDENTIALS_PSW = 'dckr_pat_i0VRS1etOICqWTmBVUovfBRC_Do'
+    DOCKERHUB_USERNAME = 'ishaq'
+    DOCKERHUB_PASSWORD = 'dckr_pat_i0VRS1etOICqWTmBVUovfBRC_Do'
     REMOTE_SERVER = '16.171.19.159'
-    REMOTE_USER = 'ec2-user' 	  	  
+    REMOTE_USER = 'ec2-user' 	
+    DOCKER_IMAGE_NAME = 'devops'  	  
   }
 	
   // Fetch code from GitHub
@@ -56,9 +57,16 @@ pipeline {
 	  
     stage('Login to DockerHub') {
       steps {
-        sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u    $DOCKERHUB_CREDENTIALS_USR --password-stdin'
-      }
+                withCredentials([usernamePassword(credentialsId: '4c58011f-1423-4c2e-9c12-7efa16d05874', usernameVariable: 'ishaq', passwordVariable: 'dckr_pat_i0VRS1etOICqWTmBVUovfBRC_Do')]) {
+                    sh """
+                        docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD
+                        docker build -t $DOCKER_IMAGE_NAME .
+                        docker push $DOCKER_IMAGE_NAME
+                    """
+                }
+            }
     }
+	
 	  
    // Push image to DockerHub registry
 	  
