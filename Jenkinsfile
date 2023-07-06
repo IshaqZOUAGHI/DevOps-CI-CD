@@ -61,7 +61,6 @@ pipeline {
                     sh """
                         docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD
                         docker build -t $DOCKER_IMAGE_NAME .
-                        docker push $DOCKER_IMAGE_NAME
                     """
                 }
             }
