@@ -3,9 +3,9 @@ pipeline {
     
   environment {
 	DOCKERHUB_CREDENTIALS_USR = credentials('docker-hub-cred')
-	DOCKERHUB_PASSWORD = ‘dckr_pat_7O3oWyfbLvS_dXs2PuGgIF8yknU’
+	DOCKERHUB_PASSWORD = 'dckr_pat_7O3oWyfbLvS_dXs2PuGgIF8yknU'
 	REMOTE_SERVER = '16.171.151.142'
-	REMOTE_USER = 'ubuntu’      	   
+	REMOTE_USER = 'ubuntu'      	   
   }
     
   // Fetch code from GitHub
